@@ -1,6 +1,7 @@
 language: ruby
 cache:
   directories:
+    - vendor/bundle
 rvm:
   - "2.6.2"
 script:
@@ -9,6 +10,7 @@ script:
 addons:
   postgresql: "9.3"
   chrome: stable
+install: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3
 before_install:
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 before_script:
